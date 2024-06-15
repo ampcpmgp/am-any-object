@@ -41,13 +41,13 @@ describe("anyNestedObject", () => {
 
   it("should set name is {} and count is 5 when passed count is 5", () => {
     // Arrange
-    type PlainObject = {
+    type FlatObject = {
       name: string;
       count: number;
     };
 
     // Act
-    const { count, name } = anyNestedObject<PlainObject>({
+    const { count, name } = anyNestedObject<FlatObject>({
       count: 5,
     });
 

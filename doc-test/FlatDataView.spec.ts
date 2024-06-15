@@ -1,16 +1,16 @@
 import { describe, it, expect, vi } from "vitest";
-import { PlainDataView } from "./PlainDataView";
-import { fetchPlainData } from "./api/fetchPlainData";
-import { anyPlainObject } from "../src/index";
+import { FlatDataView } from "./FlatDataView";
+import { fetchFlatData } from "./api/fetchFlatData";
+import { anyFlatObject } from "../src/index";
 
-vi.mock("./api/fetchPlainData", () => ({
-  fetchPlainData: vi.fn(),
+vi.mock("./api/fetchFlatData", () => ({
+  fetchFlatData: vi.fn(),
 }));
 
-describe("PlainDataView", () => {
+describe("FlatDataView", () => {
   it("should set name to 'Taro Yamada' when firstName is Taro and lastName is Yamada (not use am-any-object)", async () => {
     // Arrange
-    vi.mocked(fetchPlainData).mockResolvedValue({
+    vi.mocked(fetchFlatData).mockResolvedValue({
       id: "",
       age: 0,
       firstName: "Taro",
@@ -20,23 +20,23 @@ describe("PlainDataView", () => {
     });
 
     // Act
-    const { name } = await PlainDataView();
+    const { name } = await FlatDataView();
 
     // Assert
     expect(name).toBe("Taro Yamada");
   });
 
-  it("should set name to 'Taro Yamada' when firstName is Taro and lastName is Yamada (use am-any-object)", async () => {
+  it("should set name to 'Taro Yamada' when firstName is Taro and lastName is Yamada (use anyFlatObject)", async () => {
     // Arrange
-    vi.mocked(fetchPlainData).mockResolvedValue({
-      ...anyPlainObject(),
+    vi.mocked(fetchFlatData).mockResolvedValue({
+      ...anyFlatObject(),
 
       firstName: "Taro",
       lastName: "Yamada",
     });
 
     // Act
-    const { name } = await PlainDataView();
+    const { name } = await FlatDataView();
 
     // Assert
     expect(name).toBe("Taro Yamada");
@@ -44,14 +44,14 @@ describe("PlainDataView", () => {
 
   it("should set name to 'Taro Yamada' when firstName is Taro and lastName is Yamada (type unsafe)", async () => {
     // Arrange
-    vi.mocked(fetchPlainData).mockResolvedValue({
+    vi.mocked(fetchFlatData).mockResolvedValue({
       firstName: "Taro",
       lastName: "Yamada",
       lastName2: "Yamada",
     } as any);
 
     // Act
-    const { name } = await PlainDataView();
+    const { name } = await FlatDataView();
 
     // Assert
     expect(name).toBe("Taro Yamada");
@@ -59,7 +59,7 @@ describe("PlainDataView", () => {
 
   it("should set name to 'Taro Yamada' when firstName is Taro and lastName is Yamada (type unsafe)", async () => {
     // Arrange
-    vi.mocked(fetchPlainData).mockResolvedValue({
+    vi.mocked(fetchFlatData).mockResolvedValue({
       ...({} as any),
       firstName: "Taro",
       lastName: "Yamada",
@@ -67,7 +67,7 @@ describe("PlainDataView", () => {
     });
 
     // Act
-    const { name } = await PlainDataView();
+    const { name } = await FlatDataView();
 
     // Assert
     expect(name).toBe("Taro Yamada");

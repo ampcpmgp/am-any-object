@@ -1,4 +1,4 @@
-export interface PlainData {
+export interface FlatData {
   id: string;
   age: number;
   firstName: string;
