@@ -3,8 +3,8 @@ import { PlainDataView } from "./PlainDataView";
 import { fetchPlainData } from "./api/fetchPlainData";
 import { anyPlainObject } from "../src/index";
 
-vi.mock("./api/fetchComplicatedData", () => ({
-  fetchComplicatedData: vi.fn(),
+vi.mock("./api/fetchPlainData", () => ({
+  fetchPlainData: vi.fn(),
 }));
 
 describe("PlainDataView", () => {
