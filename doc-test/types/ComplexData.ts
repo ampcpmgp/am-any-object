@@ -9,7 +9,7 @@ export interface ComplexData {
   friends: Friend[];
 }
 
-interface Friend {
+export interface Friend {
   id: string;
   name: string;
 }
