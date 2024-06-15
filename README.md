@@ -94,7 +94,7 @@ type FlatData = {
 };
 ```
 
-can use anyFlatObject() for flat object.
+can use anyFlatObject().
 
 ```typescript
 import { anyFlatObject } from "am-any-object";
@@ -113,11 +113,7 @@ expect(data.id).toBeUndefined();
 
 ### Nested object
 
-can use anyFlatObject() for nested object.
-
 ```typescript
-import { anyFlatObject } from "am-any-object";
-
 export interface NestedData {
   id: string;
   address: {
@@ -130,6 +126,12 @@ export interface NestedData {
     };
   };
 }
+```
+
+can use anyFlatObject() for nested object.
+
+```typescript
+import { anyFlatObject } from "am-any-object";
 
 const data: NestedData = {
   ...anyFlatObject(),
@@ -139,7 +141,6 @@ const data: NestedData = {
     geo: anyFlatObject(), // need to define nested object
     postalCode: "100-0000",
   },
-
 };
 
 expect(data.address.postalCode).toBe("100-0000");
