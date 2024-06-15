@@ -159,7 +159,9 @@ const data: NestedData = anyNestedObject({
 });
 
 expect(data.address.postalCode).toBe("100-0000");
-expect(data.address.geo.lat).toEqual({}); // all properties is empty object, be careful!
+
+// all not defined properties is empty object, be careful!
+expect(data.address.geo.lat).toEqual({});
 ```
 
 ## Advanced
