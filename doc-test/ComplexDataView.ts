@@ -1,7 +1,7 @@
-import { fetchComplicatedData } from "./api/fetchComplicatedData";
+import { fetchComplexData } from "./api/fetchComplexData";
 
 export async function ComplexDataView() {
-  const data = await fetchComplicatedData();
+  const data = await fetchComplexData();
 
   const firstFriend = data.friends.at(0);
   const secondFriend = data.friends.at(1);

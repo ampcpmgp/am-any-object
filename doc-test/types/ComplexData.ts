@@ -1,15 +1,14 @@
 export interface ComplexData {
   id: string;
-  name: string;
   address: {
     country: string;
     city: string;
     postalCode?: string;
   };
-  friends: Friend[];
+  friends: ComplexFriendData[];
 }
 
-export interface Friend {
+export interface ComplexFriendData {
   id: string;
   name: string;
 }
