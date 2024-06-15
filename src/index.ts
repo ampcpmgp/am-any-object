@@ -1,1 +1,2 @@
-export * from "./any-object";
+export * from "./any-deep-object";
+export * from "./any-plain-object";
