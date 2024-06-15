@@ -1,2 +1,2 @@
-# Every Mock
+# AM any object
 
