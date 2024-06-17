@@ -7,6 +7,7 @@
     - [Nested object](#nested-object)
   - [Advanced](#advanced)
     - [Generics](#generics)
+  - [Next step](#next-step)
 
 
 # AM any object
@@ -179,3 +180,9 @@ import { anyNestedObject } from "am-any-object";
 
 const data = anyNestedObject<{ id: string; age: number }>();
 ```
+
+
+## Next step 
+
+- [ ] Function mock support
+- [ ] Array mock support
