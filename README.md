@@ -101,12 +101,11 @@ data.ANY_PROPERTY; // undefined
 ### anyNestedObject()
 
 ```typescript
-const data = anyNestedObject({ id: "dummy-id" });
+const data = anyNestedObject({ address: { city: "Tokyo" } });
 
-data.id; // "dummy-id"
-data.address // {}
-data.address.city // {}
-data.address.ANY_PROPERTY.ANY_PROPERTY // {}
+data.id; // {}
+data.address.city; // "Tokyo"
+data.address.ANY_PROPERTY.ANY_PROPERTY; // {}
 ```
 
 ## Advanced
