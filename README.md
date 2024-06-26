@@ -2,9 +2,9 @@
   - [Installation](#installation)
   - [Import](#import)
   - [Usage](#usage)
-  - [Use case](#use-case)
-    - [Flat object](#flat-object)
-    - [Nested object](#nested-object)
+  - [API](#api)
+    - [anyFlatObject()](#anyflatobject)
+    - [anyNestedObject()](#anynestedobject)
   - [Advanced](#advanced)
     - [Generics](#generics)
   - [Next step](#next-step)
@@ -24,6 +24,9 @@ npm i am-any-object -D
 
 ```typescript
 import { anyFlatObject } from "am-any-object";
+
+// or nested object more powerful
+import { anyNestedObject } from "am-any-object";
 ```
 
 ## Usage
@@ -80,89 +83,27 @@ vi.mocked(fetchFlatData).mockResolvedValue({
 });
 ```
 
-## Use case
+## API
 
-### Flat object
+### anyFlatObject()
 
 ```typescript
-type FlatData = {
-  id: string;
-  age: number;
-  firstName: string;
-  lastName: string;
-  country: string;
-  city: string;
-};
+const data = anyFlatObject();
+
+data.id; // undefined
+data.age; // undefined
+data.ANY_PROPERTY; // undefined
 ```
 
-can use anyFlatObject().
+### anyNestedObject()
 
 ```typescript
-import { anyFlatObject } from "am-any-object";
+const data = anyNestedObject();
 
-const data: FlatData = {
-  ...anyFlatObject(),
-
-  firstName: "Taro",
-  lastName: "Yamada",
-};
-
-expect(data.firstName).toBe("Taro");
-expect(data.lastName).toBe("Yamada");
-expect(data.id).toBeUndefined();
-```
-
-### Nested object
-
-```typescript
-export interface NestedData {
-  id: string;
-  address: {
-    country: string;
-    city: string;
-    postalCode?: string;
-    geo: {
-      lat: number;
-      lng: number;
-    };
-  };
-}
-```
-
-can use anyFlatObject() for nested object.
-
-```typescript
-import { anyFlatObject } from "am-any-object";
-
-const data: NestedData = {
-  ...anyFlatObject(),
-
-  address: {
-    ...anyFlatObject(),
-    geo: anyFlatObject(), // need to define nested object
-    postalCode: "100-0000",
-  },
-};
-
-expect(data.address.postalCode).toBe("100-0000");
-expect(data.address.geo.lat).toBeUndefined();
-```
-
-can use anyNestedObject() also.
-
-```typescript
-import { anyNestedObject } from "am-any-object";
-
-const data: NestedData = anyNestedObject({
-  address: {
-    postalCode: "100-0000",
-  },
-});
-
-expect(data.address.postalCode).toBe("100-0000");
-
-// all not defined properties is empty object, be careful!
-expect(data.address.geo.lat).toEqual({});
+data.id; // {}
+data.address // {}
+data.address.city // {}
+data.address.ANY_PROPERTY.ANY_PROPERTY // {}
 ```
 
 ## Advanced
@@ -178,7 +119,7 @@ const data = anyFlatObject<{ id: string; age: number }>();
 ```typescript
 import { anyNestedObject } from "am-any-object";
 
-const data = anyNestedObject<{ id: string; age: number }>();
+const data = anyNestedObject<{ id: string; address: { city: string } }>();
 ```
 
 
