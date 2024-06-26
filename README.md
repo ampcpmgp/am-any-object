@@ -12,7 +12,7 @@
 
 # AM any object
 
-This library is mock data definition, which removes all unnecessary mock data for unit testing.
+This library is mock data definition, which removes all unnecessary mock data and type safe for unit testing.
 
 ## Installation
 
@@ -98,9 +98,9 @@ data.ANY_PROPERTY; // undefined
 ### anyNestedObject()
 
 ```typescript
-const data = anyNestedObject();
+const data = anyNestedObject({ id: "dummy-id" });
 
-data.id; // {}
+data.id; // "dummy-id"
 data.address // {}
 data.address.city // {}
 data.address.ANY_PROPERTY.ANY_PROPERTY // {}
