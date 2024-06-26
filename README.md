@@ -7,6 +7,9 @@
     - [anyNestedObject()](#anynestedobject)
   - [Advanced](#advanced)
     - [Generics](#generics)
+  - [Use case](#use-case)
+    - [Flat object](#flat-object)
+    - [Nested object](#nested-object)
   - [Next step](#next-step)
 
 
@@ -120,6 +123,92 @@ const data = anyFlatObject<{ id: string; age: number }>();
 import { anyNestedObject } from "am-any-object";
 
 const data = anyNestedObject<{ id: string; address: { city: string } }>();
+```
+
+
+## Use case
+
+### Flat object
+
+```typescript
+type FlatData = {
+  id: string;
+  age: number;
+  firstName: string;
+  lastName: string;
+  country: string;
+  city: string;
+};
+```
+
+can use anyFlatObject().
+
+```typescript
+import { anyFlatObject } from "am-any-object";
+
+const data: FlatData = {
+  ...anyFlatObject(),
+
+  firstName: "Taro",
+  lastName: "Yamada",
+};
+
+expect(data.firstName).toBe("Taro");
+expect(data.lastName).toBe("Yamada");
+expect(data.id).toBeUndefined();
+```
+
+### Nested object
+
+```typescript
+export interface NestedData {
+  id: string;
+  address: {
+    country: string;
+    city: string;
+    postalCode?: string;
+    geo: {
+      lat: number;
+      lng: number;
+    };
+  };
+}
+```
+
+can use anyFlatObject() for nested object.
+
+```typescript
+import { anyFlatObject } from "am-any-object";
+
+const data: NestedData = {
+  ...anyFlatObject(),
+
+  address: {
+    ...anyFlatObject(),
+    geo: anyFlatObject(), // need to define nested object
+    postalCode: "100-0000",
+  },
+};
+
+expect(data.address.postalCode).toBe("100-0000");
+expect(data.address.geo.lat).toBeUndefined();
+```
+
+can use anyNestedObject() also.
+
+```typescript
+import { anyNestedObject } from "am-any-object";
+
+const data: NestedData = anyNestedObject({
+  address: {
+    postalCode: "100-0000",
+  },
+});
+
+expect(data.address.postalCode).toBe("100-0000");
+
+// all not defined properties is empty object, be careful!
+expect(data.address.geo.lat).toEqual({});
 ```
 
 
