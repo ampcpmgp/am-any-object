@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { FlatDataView } from "./FlatDataView";
 import { fetchFlatData } from "./api/fetchFlatData";
-import { anyFlatObject } from "../src/index";
+import { anyObject } from "../src/index";
 
 vi.mock("./api/fetchFlatData", () => ({
   fetchFlatData: vi.fn(),
@@ -26,10 +26,10 @@ describe("FlatDataView", () => {
     expect(name).toBe("Taro Yamada");
   });
 
-  it("should set name to 'Taro Yamada' when firstName is Taro and lastName is Yamada (use anyFlatObject)", async () => {
+  it("should set name to 'Taro Yamada' when firstName is Taro and lastName is Yamada (use anyObject)", async () => {
     // Arrange
     vi.mocked(fetchFlatData).mockResolvedValue({
-      ...anyFlatObject(),
+      ...anyObject(),
 
       firstName: "Taro",
       lastName: "Yamada",

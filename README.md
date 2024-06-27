@@ -3,7 +3,7 @@
   - [Import](#import)
   - [Usage](#usage)
   - [API](#api)
-    - [anyFlatObject()](#anyflatobject)
+    - [anyObject()](#anyobject)
     - [anyNestedObject()](#anynestedobject)
   - [Advanced](#advanced)
     - [Generics](#generics)
@@ -26,7 +26,7 @@ npm i am-any-object -D
 ## Import
 
 ```typescript
-import { anyFlatObject } from "am-any-object";
+import { anyObject } from "am-any-object";
 
 // or nested object more powerful
 import { anyNestedObject } from "am-any-object";
@@ -36,7 +36,7 @@ import { anyNestedObject } from "am-any-object";
 
 ```typescript
 vi.mocked(fetchFlatData).mockResolvedValue({
-  ...anyFlatObject(),
+  ...anyObject(),
 
   // only data for unit testing 👍
   firstName: "Taro",
@@ -46,7 +46,7 @@ vi.mocked(fetchFlatData).mockResolvedValue({
 expect(name).toBe("Taro Yamada");
 ```
 
-If not use `anyFlatObject()`, you need to write all properties.
+If not use `anyObject()`, you need to write all properties.
 
 ```typescript
 vi.mocked(fetchFlatData).mockResolvedValue({
@@ -88,10 +88,10 @@ vi.mocked(fetchFlatData).mockResolvedValue({
 
 ## API
 
-### anyFlatObject()
+### anyObject()
 
 ```typescript
-const data = anyFlatObject();
+const data = anyObject();
 
 data.id; // undefined
 data.age; // undefined
@@ -113,9 +113,9 @@ data.address.ANY_PROPERTY.ANY_PROPERTY; // {}
 ### Generics
 
 ```typescript
-import { anyFlatObject } from "am-any-object";
+import { anyObject } from "am-any-object";
 
-const data = anyFlatObject<{ id: string; age: number }>();
+const data = anyObject<{ id: string; age: number }>();
 ```
 
 ```typescript
@@ -140,13 +140,13 @@ type FlatData = {
 };
 ```
 
-can use anyFlatObject().
+can use anyObject().
 
 ```typescript
-import { anyFlatObject } from "am-any-object";
+import { anyObject } from "am-any-object";
 
 const data: FlatData = {
-  ...anyFlatObject(),
+  ...anyObject(),
 
   firstName: "Taro",
   lastName: "Yamada",
@@ -174,17 +174,17 @@ export interface NestedData {
 }
 ```
 
-can use anyFlatObject() for nested object.
+can use anyObject() for nested object.
 
 ```typescript
-import { anyFlatObject } from "am-any-object";
+import { anyObject } from "am-any-object";
 
 const data: NestedData = {
-  ...anyFlatObject(),
+  ...anyObject(),
 
   address: {
-    ...anyFlatObject(),
-    geo: anyFlatObject(), // need to define nested object
+    ...anyObject(),
+    geo: anyObject(), // need to define nested object
     postalCode: "100-0000",
   },
 };

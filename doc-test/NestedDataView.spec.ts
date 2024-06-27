@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { NestedDataView } from "./NestedDataView";
 import { fetchNestedData } from "./api/fetchNestedData";
-import { anyNestedObject, anyFlatObject } from "../src/index";
+import { anyNestedObject, anyObject } from "../src/index";
 import type { NestedData } from "./types/NestedData";
 
 vi.mock("./api/fetchNestedData", () => ({
@@ -31,14 +31,14 @@ describe("NestedDataView", () => {
     expect(hasPostalCode).toBe(true);
   });
 
-  it("should set hasPostalCode to true when address.postalCode is defined (use anyFlatObject)", async () => {
+  it("should set hasPostalCode to true when address.postalCode is defined (use anyObject)", async () => {
     // Arrange
     vi.mocked(fetchNestedData).mockResolvedValue({
-      ...anyFlatObject(),
+      ...anyObject(),
 
       address: {
-        ...anyFlatObject(),
-        geo: anyFlatObject(),
+        ...anyObject(),
+        geo: anyObject(),
         postalCode: "100-0000",
       },
     });
