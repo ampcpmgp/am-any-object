@@ -11,7 +11,7 @@
   - [Use case](#use-case)
     - [Flat object](#flat-object)
     - [Nested object](#nested-object)
-    - [Want more accurate data?](#want-more-accurate-data)
+    - [More accurate?](#more-accurate)
   - [Next step](#next-step)
 
 
@@ -225,7 +225,7 @@ expect(data.address.postalCode).toBe("xxx-xxxx");
 expect(data.address.geo.lat).toEqual({});
 ```
 
-### Want more accurate data?
+### More accurate?
 
 ```typescript
 import { extendObject } from "am-any-object";
