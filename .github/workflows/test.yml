@@ -7,9 +7,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: action/checkout@v4
-        with:
-         token: ${{ secrets.MY_GITHUB_TOKEN }}
+      # workaround checkout
+      # https://docs.github.com/ja/actions/learn-github-actions/contexts
+      - run: git clone --depth 1 --branch "${{ github.ref_name }}" --single-branch https://github.com/ampcpmgp/elemental-sea.git .
+
+      # actions/checkout causes error
+      # https://github.com/ampcpmgp/elemental-sea/actions/runs/8670351694/job/23778249261]
+      #
+      # try to below, but not working
+      # https://github.com/actions/checkout/issues/395
+      # 
+      # - uses: action/checkout@v4
 
       # https://bun.sh/guides/runtime/cicd
       - uses: oven-sh/setup-bun@v2
