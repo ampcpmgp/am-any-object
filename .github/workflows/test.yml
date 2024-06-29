@@ -1,0 +1,17 @@
+name: Tests
+on: [push]
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: action/checkout@v4
+
+      # https://bun.sh/guides/runtime/cicd
+      - uses: oven-sh/setup-bun@v2
+
+      # Run
+      - run: bun install
+      - run: bun run test
