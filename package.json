@@ -14,5 +14,8 @@
     "type-fest": "^4.20.0",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0"
+  },
+  "dependencies": {
+    "ts-deepmerge": "^7.0.0"
   }
 }

@@ -4,12 +4,14 @@
   - [Usage](#usage)
   - [API](#api)
     - [anyObject()](#anyobject)
-    - [anyNestedObject()](#anynestedobject)
+    - [anyNestedObject](#anynestedobject)
+    - [extendObject](#extendobject)
   - [Advanced](#advanced)
     - [Generics](#generics)
   - [Use case](#use-case)
     - [Flat object](#flat-object)
     - [Nested object](#nested-object)
+    - [Want more accurate data?](#want-more-accurate-data)
   - [Next step](#next-step)
 
 
@@ -98,7 +100,7 @@ data.age; // undefined
 data.ANY_PROPERTY; // undefined
 ```
 
-### anyNestedObject()
+### anyNestedObject
 
 ```typescript
 const data = anyNestedObject({ address: { city: "Tokyo" } });
@@ -106,6 +108,19 @@ const data = anyNestedObject({ address: { city: "Tokyo" } });
 data.id; // {}
 data.address.city; // "Tokyo"
 data.address.ANY_PROPERTY.ANY_PROPERTY; // {}
+```
+
+### extendObject
+
+```typescript
+const base = { id: "1", address: { postalCode: "xxx-xxxx" } };
+const data = extendObject({ address: { city: "Tokyo" } });
+
+data.id; // "1"
+data.address.postalCode; // "xxx-xxxx"
+data.address.city; // "Tokyo"
+data.address.OTHER_PROPERTY; // undefined
+data.address.OTHER_PROPERTY.OTHER_PROPERTY // Error!
 ```
 
 ## Advanced
@@ -185,11 +200,11 @@ const data: NestedData = {
   address: {
     ...anyObject(),
     geo: anyObject(), // need to define nested object
-    postalCode: "100-0000",
+    postalCode: "xxx-xxxx",
   },
 };
 
-expect(data.address.postalCode).toBe("100-0000");
+expect(data.address.postalCode).toBe("xxx-xxxx");
 expect(data.address.geo.lat).toBeUndefined();
 ```
 
@@ -200,16 +215,38 @@ import { anyNestedObject } from "am-any-object";
 
 const data: NestedData = anyNestedObject({
   address: {
-    postalCode: "100-0000",
+    postalCode: "xxx-xxxx",
   },
 });
 
-expect(data.address.postalCode).toBe("100-0000");
+expect(data.address.postalCode).toBe("xxx-xxxx");
 
 // all not defined properties is empty object, be careful!
 expect(data.address.geo.lat).toEqual({});
 ```
 
+### Want more accurate data?
+
+```typescript
+import { extendObject } from "am-any-object";
+
+const fakeData = {
+  id: "1",
+  address: {
+    postalCode: "xxx-xxxx",
+  },
+};
+
+// it's same deep copy
+const data = extendObject(fakeData, {
+  address: {
+    city: "Tokyo",
+  },
+});
+
+expect(data.address.postalCode).toBe("xxx-xxxx");
+expect(data.address.address).toEqual("Tokyo");
+```
 
 ## Next step 
 
