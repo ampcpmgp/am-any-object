@@ -3,7 +3,7 @@
   - [Import](#import)
   - [Usage](#usage)
   - [API](#api)
-    - [anyObject()](#anyobject)
+    - [anyObject](#anyobject)
     - [anyNestedObject](#anynestedobject)
     - [extendObject](#extendobject)
   - [Advanced](#advanced)
@@ -90,7 +90,7 @@ vi.mocked(fetchFlatData).mockResolvedValue({
 
 ## API
 
-### anyObject()
+### anyObject
 
 ```typescript
 const data = anyObject();
