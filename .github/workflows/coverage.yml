@@ -1,0 +1,36 @@
+name: Coverage
+on: [pull_request]
+
+jobs:
+  coverage:
+    name: coverage
+    runs-on: ubuntu-latest
+
+    permissions:
+      # Required to checkout the code
+      contents: read
+      # Required to put a comment into the pull-request
+      pull-requests: write
+
+    steps:
+      # workaround checkout
+      # https://docs.github.com/ja/actions/learn-github-actions/contexts
+      - run: git clone --depth 1 --branch "${{ github.head_ref }}" --single-branch https://github.com/ampcpmgp/am-any-object.git .
+
+      # try to below, but not working
+      # https://github.com/actions/checkout/issues/395
+      # 
+      # - uses: action/checkout@v4
+
+      # https://bun.sh/guides/runtime/cicd
+      - uses: oven-sh/setup-bun@v1
+
+      # Run
+      - run: bun install
+      - run: bun run coverage
+
+      - name: Report Coverage
+        # Set if: always() to also generate the report if tests are failing
+        # Only works if you set `reportOnFailure: true` in your vite config
+        if: always() 
+        uses:  davelosert/vitest-coverage-report-action@v2
