@@ -19,11 +19,10 @@ jobs:
 
       # try to below, but not working
       # https://github.com/actions/checkout/issues/395
-      # 
       # - uses: action/checkout@v4
 
       # https://bun.sh/guides/runtime/cicd
-      - uses: oven-sh/setup-bun@v1
+      - uses: oven-sh/setup-bun@v2
 
       # Run
       - run: bun install
@@ -32,5 +31,5 @@ jobs:
       - name: Report Coverage
         # Set if: always() to also generate the report if tests are failing
         # Only works if you set `reportOnFailure: true` in your vite config
-        if: always() 
-        uses:  davelosert/vitest-coverage-report-action@v2
+        if: always()
+        uses: davelosert/vitest-coverage-report-action@v2
