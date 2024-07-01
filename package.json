@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "vitest",
+    "coverage": "vitest run --coverage --coverage.reportOnFailure --coverage.reporter=json-summary --coverage.reporter=json",
     "tsc": "tsc"
   },
   "author": "",
