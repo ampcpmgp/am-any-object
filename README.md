@@ -3,8 +3,8 @@
   - [Import](#import)
   - [Usage](#usage)
   - [API](#api)
-    - [anyObject()](#anyobject)
-    - [anyNestedObject()](#anynestedobject)
+    - [anyObject](#anyobject)
+    - [anyNestedObject](#anynestedobject)
   - [Advanced](#advanced)
     - [Generics](#generics)
   - [Use case](#use-case)
@@ -88,7 +88,7 @@ vi.mocked(fetchFlatData).mockResolvedValue({
 
 ## API
 
-### anyObject()
+### anyObject
 
 ```typescript
 const data = anyObject();
@@ -98,7 +98,7 @@ data.age; // undefined
 data.ANY_PROPERTY; // undefined
 ```
 
-### anyNestedObject()
+### anyNestedObject
 
 ```typescript
 const data = anyNestedObject({ address: { city: "Tokyo" } });
