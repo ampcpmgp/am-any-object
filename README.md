@@ -114,7 +114,8 @@ data.address.ANY_PROPERTY.ANY_PROPERTY; // {}
 
 ```typescript
 const base = { id: "1", address: { postalCode: "xxx-xxxx" } };
-const data = extendObject({ address: { city: "Tokyo" } });
+const extended = { address: { city: "Tokyo" } };
+const data = extendObject(base, extended);
 
 data.id; // "1"
 data.address.postalCode; // "xxx-xxxx"
