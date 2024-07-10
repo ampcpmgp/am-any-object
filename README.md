@@ -103,6 +103,14 @@ data.ANY_PROPERTY; // undefined
 ### anyNestedObject
 
 ```typescript
+const data = anyNestedObject();
+
+data.id; // {}
+data.address.city; // {}
+data.address.ANY_PROPERTY.ANY_PROPERTY; // {}
+```
+
+```typescript
 const data = anyNestedObject({ address: { city: "Tokyo" } });
 
 data.id; // {}
