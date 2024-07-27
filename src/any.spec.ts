@@ -32,4 +32,31 @@ describe("any", () => {
     // Assert
     expect(actual.array.push()).toBeUndefined();
   });
+
+  it("should get every data when passed object", () => {
+    // Arrange
+    type Data = {
+      data: number;
+      array: number[];
+      object: { data: number };
+      func: () => number;
+      ANY_PROPERTY: any;
+    };
+
+    // Act
+    const actual = any<Data>({
+      data: 1,
+      array: [1],
+      object: { data: 1 },
+      func: () => 1,
+    });
+
+    // Assert
+    expect(actual.data).toBe(1);
+    expect(actual.array[0]).toBe(1);
+    expect(actual.object.data).toBe(1);
+    expect(actual.func()).toBe(1);
+    expect(typeof actual.array[1]).toBe("function");
+    expect(typeof actual.ANY_PROPERTY).toBe("function");
+  });
 });
