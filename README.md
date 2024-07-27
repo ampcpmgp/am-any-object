@@ -6,13 +6,14 @@
     - [anyObject](#anyobject)
     - [anyNestedObject](#anynestedobject)
     - [extendObject](#extendobject)
+    - [any (experimental)](#any-experimental)
   - [Advanced](#advanced)
     - [Generics](#generics)
   - [Use case](#use-case)
     - [Flat object](#flat-object)
     - [Nested object](#nested-object)
     - [More accurate?](#more-accurate)
-  - [Next step](#next-step)
+    - [More powerful?](#more-powerful)
 
 
 # AM any object
@@ -130,6 +131,16 @@ data.address.postalCode; // "xxx-xxxx"
 data.address.city; // "Tokyo"
 data.address.OTHER_PROPERTY; // undefined
 data.address.OTHER_PROPERTY.OTHER_PROPERTY // Error!
+```
+
+### any (experimental)
+
+```typescript
+const data = any();
+
+data.func() // undefined
+data.value.func() // undefined
+data.items.find() // undefined
 ```
 
 ## Advanced
@@ -257,7 +268,14 @@ expect(data.address.postalCode).toBe("xxx-xxxx");
 expect(data.address.address).toEqual("Tokyo");
 ```
 
-## Next step 
+### More powerful?
 
-- [ ] Function mock support
-- [ ] Array mock support
+```typescript
+import { any } from "am-any-object";
+
+const data = any();
+
+expect(data.func()).toBeUndefined(); // can call
+expect(data.value.func()).toBeUndefined();
+expect(data.items.find()).toBeUndefined(); // can use array method
+```
