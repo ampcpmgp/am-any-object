@@ -16,8 +16,8 @@ describe("any", () => {
 
     // Assert
     expect(typeof actual).toBe("function");
-    expect(actual.func()).toBe(undefined);
-    expect(actual.value.func()).toBe(undefined);
+    expect(actual.func()).toBeUndefined();
+    expect(actual.value.func()).toBeUndefined();
   });
 
   it("should can call array method", () => {
@@ -30,6 +30,6 @@ describe("any", () => {
     const actual = any<ArrayMethod>();
 
     // Assert
-    expect(actual.array.push()).toBe(undefined);
+    expect(actual.array.push()).toBeUndefined();
   });
 });

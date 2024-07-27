@@ -13,6 +13,7 @@
     - [Flat object](#flat-object)
     - [Nested object](#nested-object)
     - [More accurate?](#more-accurate)
+    - [More powerful?](#more-powerful)
 
 
 # AM any object
@@ -265,4 +266,16 @@ const data = extendObject(fakeData, {
 
 expect(data.address.postalCode).toBe("xxx-xxxx");
 expect(data.address.address).toEqual("Tokyo");
+```
+
+### More powerful?
+
+```typescript
+import { any } from "am-any-object";
+
+const data = any();
+
+expect(data.func()).toBeUndefined(); // can call
+expect(data.value.func()).toBeUndefined();
+expect(data.items.find()).toBeUndefined(); // can use array method
 ```
