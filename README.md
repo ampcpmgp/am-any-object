@@ -6,13 +6,13 @@
     - [anyObject](#anyobject)
     - [anyNestedObject](#anynestedobject)
     - [extendObject](#extendobject)
+    - [any (experimental)](#any-experimental)
   - [Advanced](#advanced)
     - [Generics](#generics)
   - [Use case](#use-case)
     - [Flat object](#flat-object)
     - [Nested object](#nested-object)
     - [More accurate?](#more-accurate)
-  - [Next step](#next-step)
 
 
 # AM any object
@@ -130,6 +130,16 @@ data.address.postalCode; // "xxx-xxxx"
 data.address.city; // "Tokyo"
 data.address.OTHER_PROPERTY; // undefined
 data.address.OTHER_PROPERTY.OTHER_PROPERTY // Error!
+```
+
+### any (experimental)
+
+```typescript
+const data = any();
+
+data.func() // undefined
+data.value.func() // undefined
+data.items.find() // undefined
 ```
 
 ## Advanced
@@ -256,8 +266,3 @@ const data = extendObject(fakeData, {
 expect(data.address.postalCode).toBe("xxx-xxxx");
 expect(data.address.address).toEqual("Tokyo");
 ```
-
-## Next step 
-
-- [ ] Function mock support
-- [ ] Array mock support
