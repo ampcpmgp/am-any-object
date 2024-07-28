@@ -40,7 +40,7 @@ describe("any", () => {
       array: number[];
       object: { data: number };
       func: () => number;
-      ANY_PROPERTY: any;
+      ANY_PROPERTY: (arg: number) => number;
     };
 
     // Act

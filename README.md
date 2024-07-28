@@ -275,7 +275,30 @@ import { any } from "am-any-object";
 
 const data = any();
 
-expect(data.func()).toBeUndefined(); // can call
-expect(data.value.func()).toBeUndefined();
+expect(typeof data.func).toBe("function");
+expect(data.value.func()).toBeUndefined(); // can call
 expect(data.items.find()).toBeUndefined(); // can use array method
+```
+
+Sure, You can extend any().
+
+```typescript
+import { any } from "am-any-object";
+
+type Data = {
+  id: string;
+  address: {
+    city: string;
+    getGeo: () => { lat: number; lng: number };
+  };
+  func: () => number;
+};
+
+
+const data = any<Data>({ id: "1", address: { city: "Tokyo" } });
+
+expect(data.id).toBe("1");
+expect(data.address.city).toBe("Tokyo");
+expect(data.address.getGeo()).toBeUndefined();
+expect(data.func()).toBeUndefined();
 ```
